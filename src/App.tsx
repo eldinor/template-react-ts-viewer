@@ -1,24 +1,21 @@
-import { useState } from 'react'
-import './App.css'
-import ViewerComponent from './ViewerComponent';
+import { useState } from "react";
+import "./App.css";
+import CanvasViewer from "./CanvasViewer";
 
 export default function App() {
-  const [orbitSpeed, setOrbitSpeed] = useState(false);
+  const [orbit, setOrbit] = useState(false);
   return (
-<>
-        <ViewerComponent
-               orbit={orbitSpeed}
-               source={'https://playground.babylonjs.com/scenes/BoomBox.glb'}
-        />
-        <p></p>
+    <>
+      <CanvasViewer orbit={orbit} source={"https://playground.babylonjs.com/scenes/BoomBox.glb"} />
+      <p></p>
       <button
         type="button"
         onClick={() => {
-          setOrbitSpeed((arg) => !arg);
+          setOrbit((state) => !state);
         }}
       >
-        {orbitSpeed ? 'Stop' : 'Rotate'}
+        {orbit ? "Stop" : "Rotate"}
       </button>
-</>
+    </>
   );
 }
