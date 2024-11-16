@@ -5,7 +5,7 @@ import { HTML3DElement } from "@babylonjs/viewer";
 
 export default function App()
  {
-  const htmlElementRef = useRef<HTMLElement | null>(null);
+  const htmlElementRef = useRef<HTMLDivElement | null>(null);
   new HTML3DElement()
   
     useEffect(() => {
