@@ -1,24 +1,22 @@
-import { useState } from 'react'
-import './App.css'
-import ViewerComponent from './ViewerComponent';
+import * as React from "react";
+import { useEffect, useRef } from "react";
+import "./App.css";
+import { HTML3DElement } from "@babylonjs/viewer";
 
-export default function App() {
-  const [orbitSpeed, setOrbitSpeed] = useState(false);
+export default function App()
+ {
+  const htmlElementRef = useRef<HTMLElement | null>(null);
+  new HTML3DElement()
+  
+    useEffect(() => {
+    if (htmlElementRef.current) {
+      htmlElementRef.current!.innerHTML = '<babylon-viewer source="https://raw.githubusercontent.com/eldinor/ForBJS/master/office_chair_modern-opt.glb"></babylon-viewer>'
+    }
+  }, [htmlElementRef ])
+
   return (
-<>
-        <ViewerComponent
-               orbit={orbitSpeed}
-               source={'https://playground.babylonjs.com/scenes/BoomBox.glb'}
-        />
-        <p></p>
-      <button
-        type="button"
-        onClick={() => {
-          setOrbitSpeed((arg) => !arg);
-        }}
-      >
-        {orbitSpeed ? 'Stop' : 'Rotate'}
-      </button>
-</>
+    <>
+      <div ref={htmlElementRef} style={{backgroundColor:"lightgrey"}}></div>
+    </>
   );
 }
