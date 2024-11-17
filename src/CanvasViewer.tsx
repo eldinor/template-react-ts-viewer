@@ -16,11 +16,10 @@ function CanvasViewer(props: { source: string | ArrayBufferView | File; orbit: b
 
     viewerPromise.then((viewer) => {
       viewer.loadModel(props.source);
-
+      viewerRef.current = viewer;
+      viewer.cameraAutoOrbit = { enabled: props.orbit };
       viewer.onModelChanged.add(() => {
-        console.log("Model changed");
-        viewerRef.current = viewer;
-        viewer.cameraAutoOrbit = { enabled: props.orbit };
+        console.log("Model changed");        
       });
     });
 
